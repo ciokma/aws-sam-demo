@@ -1,0 +1,15 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+  build:
+    commands:
+      - echo "Listando directorios"
+      - ls
+      - pip install -r hello_world/requirements.txt --target hello_world/
+      - sam package --template-file template.yml --s3-bucket cicd-app-terraform  --output-template-file packaged-template.yml
+artifacts:
+  files:
+    - packaged-template.yml
+
